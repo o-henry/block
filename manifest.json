@@ -1,0 +1,25 @@
+{
+    "name": "Ban",
+    "version": "0.0.1",
+    "description": "Gets content from browser",
+    "manifest_version" : 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        { 
+            "matches": ["<all_urls>"],
+            "js": ["/src/content/index.js"]
+        }
+    ],
+    "permissions": ["activeTab", "scripting", "tabs", "storage"],
+    "host_permissions": [
+        "https://www.google.com",
+        "<all_urls>",
+        "*://*/*"
+    ],
+    "action": {
+        "default_popup": "/src/pop-up/pop-up.html "
+    }
+  
+}
