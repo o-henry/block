@@ -13,7 +13,8 @@ window.addEventListener('load', function () {
   console.log(user, message);
 });
 
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
-  let inputField = document.getElementsByTagName('input');
-  console.log('ipt', inputField);
+chrome.runtime.onMessage.addListener((request, sender, response) => {
+  if (request.message) {
+    console.log('message', request.message);
+  }
 });
