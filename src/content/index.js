@@ -1,20 +1,38 @@
-// load -> update 하는 무언가로 변경해야 할듯
+/**
+ * chat-message
+ * @param { message } : array
+ * chat-user
+ * @param { user } : array
+ **/
+
+let message;
+let user;
+
 window.addEventListener('load', function () {
-  /**
-   * chat-message
-   * @param { message } : array
-   * chat-user
-   * @param { user } : array
-   **/
+  message = document.getElementsByClassName('text-fragment');
+  user = document.getElementsByClassName('chat-author__display-name');
 
-  const message = document.getElementsByClassName('text-fragment');
-  const user = document.getElementsByClassName('chat-author__display-name');
-
-  console.log(user, message);
+  console.log('user :', user, 'message :', message, message.innerText);
 });
 
 chrome.runtime.onMessage.addListener((request, sender, response) => {
+  filter('ㅋㅋㅋ');
+
   if (request.message) {
-    console.log('message', request.message);
+    console.log('message', request.message, message);
   }
 });
+
+function filter(words) {
+  let chat = document.getElementsByClassName('text-fragment');
+
+  for (let content of chat) {
+    let text = content.innerHTML;
+    console.log('content', words, text);
+
+    if (words.includes(text)) {
+      console.log('ok???@@@@@');
+      content = content.replace(/<span>/g, '<span class="block">');
+    }
+  }
+}
