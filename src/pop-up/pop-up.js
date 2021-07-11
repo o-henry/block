@@ -12,5 +12,3 @@ function documentEvents() {
     popup(document.getElementById('block-content'));
   });
 }
-
-// pop-up button이 클릭되면, 돔을 다시 읽는다.

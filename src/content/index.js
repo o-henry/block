@@ -23,16 +23,19 @@ chrome.runtime.onMessage.addListener((request, sender, response) => {
   }
 });
 
-function filter(words) {
+function filter(message) {
   let chat = document.getElementsByClassName('text-fragment');
 
   for (let content of chat) {
     let text = content.innerHTML;
     console.log('content', words, text);
 
-    if (words.includes(text)) {
+    if (message.includes(text)) {
       console.log('ok???@@@@@');
-      content = content.replace(/<span>/g, '<span class="block">');
+      return content.replace(/<span>/g, '<span class="block">');
     }
   }
 }
+
+// 예약어를 등록 ----> 쿠키
+// 등록한 예약어의 background color 바꾸기
