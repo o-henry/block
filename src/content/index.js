@@ -5,6 +5,7 @@
  * @param { user } : array
  **/
 
+let wrapper;
 let message;
 let user;
 
@@ -16,26 +17,65 @@ window.addEventListener('load', function () {
 });
 
 chrome.runtime.onMessage.addListener((request, sender, response) => {
-  filter('ㅋㅋㅋ');
-
   if (request.message) {
-    console.log('message', request.message, message);
+    filter(request.message);
   }
 });
 
+/* ====================================================
+                      filter message
+   ==================================================== */
 function filter(message) {
   let chat = document.getElementsByClassName('text-fragment');
 
   for (let content of chat) {
     let text = content.innerHTML;
-    console.log('content', words, text);
 
-    if (message.includes(text)) {
-      console.log('ok???@@@@@');
-      return content.replace(/<span>/g, '<span class="block">');
-    }
+    // if (message.includes(text)) {
+    //   return content.replace(/<span>/g, '<span class="block">');
+    // }
   }
 }
 
-// 예약어를 등록 ----> 쿠키
-// 등록한 예약어의 background color 바꾸기
+/* ====================================================
+                      observe message
+   ==================================================== */
+let observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    console.log('mutation', mutation.type);
+  });
+});
+
+if (message) {
+  [...message].map((node) => {
+    console.log('@@@@@@", node');
+
+    observer.observe(node, {
+      attributes: true,
+      childList: true,
+      characterData: true,
+      subtree: true,
+      attributeOldValue: true,
+      attributeFilter: true,
+      characterDataOldValue: true,
+    });
+  });
+}
+
+// when clicked stop button
+// observer.disconnect();
+
+/* ====================================================
+                 create wrapper element
+   ==================================================== */
+function createWrapper() {
+  let chat = document.getElementsByClassName(
+    'sc-AxjAm gwkXPf chat-scrollable-area__message-container',
+  );
+
+  wrapper = document.createElement('div');
+  wrapper.id = 'observer';
+
+  let parent = chat[0].firstChild;
+  chat.insterBefore(wrapper, parent);
+}

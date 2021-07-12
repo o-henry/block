@@ -5,6 +5,8 @@ function popup(input) {
     const activeTab = tabs[0];
     chrome.tabs.sendMessage(activeTab.id, { message: input.value });
   });
+
+  document.getElementById('add-word').addEventListener('click', input.value);
 }
 
 function documentEvents() {
