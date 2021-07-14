@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="pop-up.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    Please Enter A Ban Word
-    <input type="text" id="block-content">
-    <button id="add-word">add</button>
-    <button id="send">BLOCK USER</button>
-    <script type="module" src="pop-up.js"></script>
+    <div class="main">
+        <form class="" method="post">
+            <input type="text" id="block-content">
+            <button type="submit" id="add-word">ADD</button>
+        </form>
+        
+        <div class="reserved-words">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+
+        <a id="clear">clear</a>
+
+        <button id="send">BLOCK</button>
+        <script type="module" src="pop-up.js"></script>
+    </div>
 </body>
 </html>

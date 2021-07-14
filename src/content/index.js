@@ -1,18 +1,9 @@
-/**
- * chat-message
- * @param { message } : array
- * chat-user
- * @param { user } : array
- **/
-
-window.addEventListener('load', function () {});
+/* ====================================================
+                      observe message
+==================================================== */
 
 chrome.runtime.onMessage.addListener((request, sender, response) => {
   if (request.message) {
-    /* ====================================================
-                      observe message
-    ==================================================== */
-
     var observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((chat) => {
@@ -29,6 +20,7 @@ chrome.runtime.onMessage.addListener((request, sender, response) => {
     subtree: true,
   };
 
-  // 특정 url에서만 동작하도록 변경
-  observer.observe(document.body, config);
+  if (window.location.href.includes('https://www.twitch.tv')) {
+    observer.observe(document.body, config);
+  }
 });
