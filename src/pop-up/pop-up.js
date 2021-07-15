@@ -6,7 +6,7 @@ function popup(input) {
     chrome.tabs.sendMessage(activeTab.id, { message: input.value });
   });
 
-  document.getElementById('add-word').addEventListener('click', input.value);
+  // document.getElementById('add-word').addEventListener('click', input.value);
 }
 
 function documentEvents() {
@@ -20,7 +20,6 @@ loadEvents();
 
 function loadEvents() {
   document.querySelector('form').addEventListener('submit', submit);
-  document.getElementById('clear').addEventListener('click', clearList);
   document.querySelector('ul').addEventListener('click', deleteReserved);
 }
 
@@ -35,17 +34,18 @@ function addReserved(word) {
   let ul = document.querySelector('ul');
   let li = document.createElement('li');
 
-  li.innerHTML = `<span class="delete">x</span><label>${word}</label>`;
+  li.innerHTML = `
+    <span class="words">${word}</span>
+    <button class="delete">x</button>
+  `;
   ul.appendChild(li);
-  document.querySelector('.reserved-word').style.display = 'block';
-}
-
-function clearList(e) {
-  let ul = (document.querySelector('ul').innerHTML = '');
+  document.querySelector('.reserved-words').style.display = 'block';
 }
 
 function deleteReserved(e) {
-  let remove = e.target.parentNode;
-  let parentNode = remove.parentNode;
-  parentNode.removeChild(remove);
+  if (e.target.className === 'delete') {
+    let remove = e.target.parentNode;
+    let parentNode = remove.parentNode;
+    parentNode.removeChild(remove);
+  }
 }
