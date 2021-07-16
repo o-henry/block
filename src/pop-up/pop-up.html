@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="pop-up.css">
+    <link rel="stylesheet" href="pop-up/fonts.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <div class="main">
         <form>
-            <input type="text" id="block-content" name="block" placeholder="Enter..">
-            <button type="submit">
-                <img src="../assets/plus.svg">
+            <input 
+                type="text"
+                name="block" 
+                maxlength="18"
+            >
+            <button id="submit" type="submit">
+                <img id="a-img" src="../assets/plus.svg">
             </button>
         </form>
         
@@ -21,7 +26,7 @@
             </ul>
         </div>
 
-        <button id="send">BLOCK</button>
+        <button id="block">BLOCK</button>
         <script src="pop-up.js"></script>
     </div>
 </body>

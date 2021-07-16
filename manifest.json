@@ -9,11 +9,17 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["/src/content/index.js"],
-            "css": ["/src/content/index.css"]
+            "js": ["/src/content/index.js"]
         }
     ],
-    "permissions": ["activeTab", "scripting", "tabs", "storage"],
+    "permissions": [
+        "activeTab", 
+        "scripting",
+        "tabs", 
+        "storage",
+        "http://fonts.googleapis.com/",
+        "https://fonts.googleapis.com/"
+    ],
     "host_permissions": [
         "https://www.google.com",
         "<all_urls>",
