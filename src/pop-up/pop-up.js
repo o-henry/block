@@ -44,6 +44,7 @@ function addWords(word) {
 function deleteWords(e) {
   if (e.target.className === 'delete') {
     let remove = e.target.parentNode;
+    removeItem(remove.querySelector('.words').innerHTML);
     let parentNode = remove.parentNode;
     parentNode.removeChild(remove);
   }
@@ -56,7 +57,12 @@ function deleteWords(e) {
 function saveWords(word) {
   chrome.storage.sync.get('reservedWords', (userText) => {
     let reservedWords = userText.reservedWords;
-    chrome.storage.sync.set({ reservedWords: [...reservedWords, word] });
+
+    if (reservedWords) {
+      chrome.storage.sync.set({ reservedWords: [...reservedWords, word] });
+    } else {
+      chrome.storage.sync.set({ reservedWords: [word] });
+    }
   });
 }
 
@@ -71,7 +77,14 @@ function getStorage() {
   });
 }
 
-function removeStorage() {}
+function removeItem(item) {
+  chrome.storage.sync.get('reservedWords', (userText) => {
+    let reservedWords = userText.reservedWords;
+    let index = reservedWords.indexOf(item);
+    if (index > -1) reservedWords.splice(index, 1);
+    chrome.storage.sync.set({ reservedWords: reservedWords });
+  });
+}
 
 /* ====================================================
                       Render list
