@@ -20,7 +20,6 @@ chrome.runtime.onMessage.addListener((request, sender, response) => {
     subtree: true,
   };
 
-  if (window.location.href.includes('https://www.twitch.tv')) {
+  window.location.href.includes('https://www.twitch.tv') &&
     observer.observe(document.body, config);
-  }
 });
