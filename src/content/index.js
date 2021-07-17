@@ -4,7 +4,7 @@
 
 chrome.runtime.onMessage.addListener((request, sender, response) => {
   if (request.message) {
-    console.log('request', request, request.message);
+    console.log('request', request.message);
 
     var observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -30,11 +30,7 @@ function compare(reserved, chat) {
   return reserved.some((item) => {
     if (isNaN(item)) item = item.replace(/\s/g, '');
     if (isNaN(chat)) chat = chat.replace(/\s/g, '');
-
-    if (pattern_eng.test(item)) {
-      item = item.toLowerCase();
-    }
-
+    if (pattern_eng.test(item)) item = item.toLowerCase();
     return chat.includes(item);
   });
 }

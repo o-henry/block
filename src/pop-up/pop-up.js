@@ -8,8 +8,8 @@ function popup(input) {
 }
 
 function documentEvents() {
-  getStorage();
   loadEvents();
+  getStorage();
 }
 
 /* ====================================================
@@ -51,7 +51,6 @@ function deleteWords(e) {
 function saveWords(word) {
   chrome.storage.sync.get('reservedWords', (userText) => {
     let reservedWords = userText.reservedWords;
-
     if (reservedWords) {
       chrome.storage.sync.set({ reservedWords: [...reservedWords, word] });
     } else {
