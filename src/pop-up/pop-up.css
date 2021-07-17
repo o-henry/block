@@ -15,7 +15,6 @@ body {
 
 .main {
   position: right;
-  border-radius: 30px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -38,13 +37,13 @@ li {
 form {
   margin: 5px;
   display: flex;
-  /* background-color: #fff; */
 }
 
 input[type='text'] {
   height: 30px;
   outline: 0;
   border: none;
+  border-radius: 3px;
   border-bottom: 0.5px solid whitesmoke;
   font-size: 1rem;
   font-family: 'Poppins', 'Noto Sans KR', sans-serif;
@@ -59,6 +58,7 @@ input {
 }
 
 button {
+  border-radius: 3px;
   background-color: #ffffff;
   outline: 0;
   border: none;
@@ -75,17 +75,17 @@ button:hover {
 .reserved-words {
   margin: 5px;
   background-color: #ffffff;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 15px 25px;
   height: 100%;
   overflow-y: auto;
-  display: flex;
 }
 
 .words {
   font-family: 'Poppins', 'Noto Sans KR', sans-serif;
   flex-grow: 1;
   padding-top: 1.125px;
+  padding-right: 5px;
 }
 
 .delete {
@@ -104,7 +104,7 @@ button:hover {
   margin: 5px;
   display: flex;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 #x-img {
@@ -114,4 +114,8 @@ button:hover {
 
 #a-img {
   padding-right: 20px;
+}
+
+#submit {
+  padding: 0;
 }

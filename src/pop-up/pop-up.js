@@ -9,13 +9,12 @@ function popup(input) {
 
 function documentEvents() {
   getStorage();
+  loadEvents();
 }
 
 /* ====================================================
                       word list
 ==================================================== */
-
-loadEvents();
 
 function loadEvents() {
   document.querySelector('form').addEventListener('submit', submit);
@@ -72,6 +71,7 @@ function getStorage() {
 
       document.getElementById('block').addEventListener('click', () => {
         popup(reservedWords);
+        window.close();
       });
     }
   });

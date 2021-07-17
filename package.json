@@ -1,6 +1,6 @@
 {
   "name": "blanket-ban",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Chrome Extension for Twitch",
   "main": "dist/index.js",
   "license": "MIT",
