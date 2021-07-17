@@ -4,8 +4,6 @@
 
 chrome.runtime.onMessage.addListener((request, sender, response) => {
   if (request.message) {
-    console.log('request', request.message);
-
     var observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((chat) => {
