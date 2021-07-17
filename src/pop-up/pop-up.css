@@ -43,7 +43,7 @@ input[type='text'] {
   height: 30px;
   outline: 0;
   border: none;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   border-bottom: 0.5px solid whitesmoke;
   font-size: 1rem;
   font-family: 'Poppins', 'Noto Sans KR', sans-serif;
@@ -58,7 +58,7 @@ input {
 }
 
 button {
-  border-radius: 3px;
+  /* border-radius: 3px; */
   background-color: #ffffff;
   outline: 0;
   border: none;
@@ -118,4 +118,6 @@ button:hover {
 
 #submit {
   padding: 0;
+  padding-top: 3.5px;
+  height: 45.5px;
 }
