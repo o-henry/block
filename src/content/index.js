@@ -29,6 +29,7 @@ function compare(reserved, chat) {
     if (isNaN(item)) item = item.replace(/\s/g, '');
     if (isNaN(chat)) chat = chat.replace(/\s/g, '');
     if (pattern_eng.test(item)) item = item.toLowerCase();
+    if (pattern_eng.test(chat)) chat = chat.toLowerCase();
     return chat.includes(item);
   });
 }
