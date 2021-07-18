@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', documentEvents, false);
+document.addEventListener("DOMContentLoaded", documentEvents, false);
 
 function popup(input) {
   chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
@@ -17,18 +17,18 @@ function documentEvents() {
 ==================================================== */
 
 function loadEvents() {
-  document.querySelector('form').addEventListener('submit', submit);
-  document.querySelector('ul').addEventListener('click', deleteWords);
+  document.querySelector("form").addEventListener("submit", submit);
+  document.querySelector("ul").addEventListener("click", deleteWords);
 }
 
 function submit(e) {
   e.preventDefault();
-  let input = document.querySelector('input');
-  if (input.value != '') {
+  let input = document.querySelector("input");
+  if (input.value != "") {
     addWords(input.value);
     saveWords(input.value);
   }
-  input.value = '';
+  input.value = "";
 }
 
 function addWords(word) {
@@ -36,9 +36,9 @@ function addWords(word) {
 }
 
 function deleteWords(e) {
-  if (e.target.className === 'delete') {
+  if (e.target.className === "delete") {
     let remove = e.target.parentNode;
-    removeItem(remove.querySelector('.words').innerText);
+    removeItem(remove.querySelector(".words").innerText);
     let parentNode = remove.parentNode;
     parentNode.removeChild(remove);
   }
@@ -49,7 +49,7 @@ function deleteWords(e) {
 ==================================================== */
 
 function saveWords(word) {
-  chrome.storage.sync.get('reservedWords', (userText) => {
+  chrome.storage.sync.get("reservedWords", (userText) => {
     let reservedWords = userText.reservedWords;
     if (reservedWords) {
       chrome.storage.sync.set({ reservedWords: [...reservedWords, word] });
@@ -60,7 +60,7 @@ function saveWords(word) {
 }
 
 function getStorage() {
-  chrome.storage.sync.get('reservedWords', (userText) => {
+  chrome.storage.sync.get("reservedWords", (userText) => {
     let reservedWords = userText.reservedWords;
 
     if (reservedWords) {
@@ -68,7 +68,7 @@ function getStorage() {
         renderList(word);
       });
 
-      document.getElementById('block').addEventListener('click', () => {
+      document.getElementById("block").addEventListener("click", () => {
         popup(reservedWords);
         window.close();
       });
@@ -77,7 +77,7 @@ function getStorage() {
 }
 
 function removeItem(item) {
-  chrome.storage.sync.get('reservedWords', (userText) => {
+  chrome.storage.sync.get("reservedWords", (userText) => {
     let reservedWords = userText.reservedWords;
     let index = reservedWords.indexOf(item);
     if (index > -1) reservedWords.splice(index, 1);
@@ -90,12 +90,12 @@ function removeItem(item) {
 ==================================================== */
 
 function renderList(word) {
-  let ul = document.querySelector('ul');
-  let li = document.createElement('li');
+  let ul = document.querySelector("ul");
+  let li = document.createElement("li");
   li.innerHTML = `
     <span class="words">${word}</span>
     <button class="delete">𝗫</button>
   `;
   ul.appendChild(li);
-  document.querySelector('.reserved-words').style.display = 'block';
+  document.querySelector(".reserved-words").style.display = "block";
 }
